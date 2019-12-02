@@ -1,0 +1,27 @@
+	• 使用终端进行邮件（以163信箱为例）发送：
+		○ 在使用之前首先要开始邮箱的授权码：
+		进入邮箱官网，进入邮箱中心，设置授权码；
+		○ 首先要用telnet连接至邮箱服务器，如连接至163信箱的服务器：
+		○ ->telnet
+		->o smtp.163.com 25 //smtp协议进行连接，25为邮件端口号
+		->HELO *** //与邮箱服务器进行连接，后面文字任意
+		  （回复：250 OK）
+		->auth login
+		   (回复：334 dXNlcm5hbWU6，其中334表示连接成功，后面的代码为Username：的。base64编码形式)
+		->输入邮箱的base64编码
+		  （如18774122652@163.com的base64编码为MTg3NzE0MjI2NTJAMTYzLmNvbQ==）
+		  （回复：334 UGFzc3dvcmQ6，表示连接成功，后面的编码为password:）
+		->输入授权码的base64编码
+		  （回复：235 Authentication successful）
+		->mail from : 邮箱地址（与登录的账号保持一致）
+		  （回复：250 Mail OK）
+		->rcpt to:邮箱地址（收件人地址）
+		  （回复：250 Mail OK）
+		->data //开始输入正文
+		  （回复：354 End data with <CR><LF>.<CR><LF>）
+		->from : 发件人
+		->to : 收件人
+		->subject : 邮件标题
+		->正文，以换行后输入'.'结束邮件
+		->quit //退出
+		  （回复：221 Bye）
