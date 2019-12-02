@@ -1,0 +1,29 @@
+1.安装swaks 
+     mac环境 执行 brew install swaks -g
+
+2.测试  swaks --to 278*****0@qq.com
+
+3.伪造发送 
+1)发送简单内容  
+swaks --to hui*****@163.com --from **wang@sys**w.com
+
+--body 诸葛先生，别来无恙～ --header "Subject: 来自大司马的问候"
+
+2)发送邮件模板
+
+模板文件由邮箱中"显示邮件原文" ,另存为 readmail.txt，删除 Received,To相关内容
+
+swaks --to hui*****@163.com --from **wang@sys**w.com --data Downloads/readmail.txt --header "Subject: 来自大司马的问候"
+
+3)附加附件
+swaks --to hui*****@163.com --from **wang@sys**w.com --attach Downloads/readmail.txt
+
+------------------------------------------------
+基本参数
+-t  –to 目标地址 -t   test@test.com
+-f –from 来源地址 (发件人)  -f "text<text@text.com>"
+–protocol 设定协议(未测试)
+--body "http://www.baidu.com"    //引号中的内容即为邮件正文；
+--header "Subject:hello"   //邮件头信息，subject为邮件标题
+-ehlo 伪造邮件ehlo头
+--data ./Desktop/email.txt    //将正常源邮件的内容保存成TXT文件，再作为正常邮件发送；
